@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
@@ -15,6 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.ilham.newsapp.presentation.Dimens.MediumPadding1
+import com.ilham.newsapp.presentation.Dimens.PageIndicatorWidth
 import com.ilham.newsapp.presentation.onboarding.component.OnBoardingPage
 import com.ilham.newsapp.presentation.onboarding.component.PageIndicator
 import com.ilham.newsapp.ui.button.PrimaryButton
@@ -57,6 +59,7 @@ fun OnBoardingScreen(
             verticalAlignment = Alignment.CenterVertically
         ){
             PageIndicator(
+                modifier = Modifier.width(PageIndicatorWidth),
                 pageSize = pages.size,
                 selectedPage = pagerState.currentPage
             )
