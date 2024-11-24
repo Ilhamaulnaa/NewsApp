@@ -11,9 +11,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import com.ilham.domain.usecase.AppEntryUseCases
+import com.ilham.newsapp.presentation.onboarding.OnBoardingEvent
 import com.ilham.newsapp.presentation.onboarding.OnBoardingScreen
+import com.ilham.newsapp.presentation.onboarding.OnBoardingViewModel
 import com.ilham.newsapp.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -23,14 +26,14 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject
-    lateinit var appEntryUseCases: AppEntryUseCases
+    lateinit var useCases: AppEntryUseCases
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //to changed content view
         WindowCompat.setDecorFitsSystemWindows(window, true)
         installSplashScreen()
         lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect{
+            useCases.readAppEntry().collect{
                 Log.d("test", it.toString())
             }
         }
@@ -41,7 +44,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    OnBoardingScreen()
+                    val viewModel: OnBoardingViewModel = hiltViewModel()
+                    OnBoardingScreen(
+                        event = viewModel::onEvent
+                    )
                 }
             }
         }

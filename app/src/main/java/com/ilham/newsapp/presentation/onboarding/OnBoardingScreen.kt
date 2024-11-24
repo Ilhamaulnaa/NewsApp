@@ -26,7 +26,8 @@ import kotlinx.coroutines.launch
 @ExperimentalFoundationApi
 @Composable
 fun OnBoardingScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    event: (OnBoardingEvent) -> Unit
 ) {
 
     val scope = rememberCoroutineScope()
@@ -77,8 +78,8 @@ fun OnBoardingScreen(
             PrimaryButton(
                 text = buttonState.value[1],
                 onClick = {
-                    if (pagerState.currentPage == 3){
-                        //go home
+                    if (pagerState.currentPage == 2){
+                        event(OnBoardingEvent.SaveAppEntry)
                     } else {
                         scope.launch {
                             pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
