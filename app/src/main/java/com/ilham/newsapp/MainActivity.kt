@@ -4,16 +4,22 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ilham.domain.usecase.AppEntryUseCases
+import com.ilham.newsapp.nvgraph.NavGraph
 import com.ilham.newsapp.presentation.onboarding.OnBoardingEvent
 import com.ilham.newsapp.presentation.onboarding.OnBoardingScreen
 import com.ilham.newsapp.presentation.onboarding.OnBoardingViewModel
@@ -25,29 +31,50 @@ import javax.inject.Inject
 @ExperimentalFoundationApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var useCases: AppEntryUseCases
+//    @Inject
+//    lateinit var useCases: AppEntryUseCases
+
+    val viewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //to changed content view
         WindowCompat.setDecorFitsSystemWindows(window, true)
-        installSplashScreen()
-        lifecycleScope.launch {
-            useCases.readAppEntry().collect{
-                Log.d("test", it.toString())
+        installSplashScreen().apply {
+            setKeepOnScreenCondition{
+                viewModel.splashCondition
             }
         }
+//        lifecycleScope.launch {
+//            useCases.readAppEntry().collect{
+//                Log.d("test", it.toString())
+//            }
+//        }
         setContent {
             NewsAppTheme {
+
+                val isSystemDarkMode = isSystemInDarkTheme()
+                val systemController = rememberSystemUiController()
+
+                SideEffect {
+                    systemController.setSystemBarsColor(
+                        color = Color.Transparent,
+                        darkIcons = !isSystemDarkMode
+                    )
+                }
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val viewModel: OnBoardingViewModel = hiltViewModel()
-                    OnBoardingScreen(
-                        event = viewModel::onEvent
-                    )
+//                    val viewModel: OnBoardingViewModel = hiltViewModel()
+//                    OnBoardingScreen(
+//                        event = viewModel::onEvent
+//                    )
+
+                    val startDestination = viewModel.startDestination
+                    NavGraph(startDestination = startDestination)
                 }
             }
         }
