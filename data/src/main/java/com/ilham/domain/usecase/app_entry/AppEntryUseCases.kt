@@ -1,4 +1,4 @@
-package com.ilham.domain.usecase
+package com.ilham.domain.usecase.app_entry
 
 class AppEntryUseCases(
     val readAppEntry: ReadAppEntry,
