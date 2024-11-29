@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.ilham.newsapp.presentation.onboarding.OnBoardingScreen
 import com.ilham.newsapp.presentation.onboarding.OnBoardingViewModel
+import com.ilham.newsapp.ui.common.ArticleCardShimmerEffect
 
 @ExperimentalFoundationApi
 @Composable
@@ -42,7 +43,7 @@ fun NavGraph(
             composable(
                 route = Route.NewsNavigatorScreen.route
             ){
-                Text(text = "News Navigator Screen")
+                ArticleCardShimmerEffect()
             }
         }
     }
