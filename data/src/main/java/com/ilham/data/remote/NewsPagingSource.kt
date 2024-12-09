@@ -35,7 +35,7 @@ class NewsPagingSource(
             val articles = newsResponse.articles.distinctBy { it.title } // remove duplicate
             PagingSource.LoadResult.Page(
                 data = articles,
-                nextKey = if (totalNewCount == newsResponse.totalResults) null else + 1,
+                nextKey = if (totalNewCount == newsResponse.totalResults) null else page + 1,
                 prevKey = null
             )
         } catch (e: Exception) {

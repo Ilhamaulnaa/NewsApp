@@ -2,6 +2,7 @@ package com.ilham.newsapp.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.ilham.domain.usecase.news.NewsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -14,6 +15,6 @@ class HomeViewModel @Inject constructor(
 
     val news = newsUseCases.getNews(
         sources = listOf("BBC-News", "Al-jazeera English", "Eventhings")
-    ).launchIn(viewModelScope)
+    ).cachedIn(viewModelScope)
 
 }
