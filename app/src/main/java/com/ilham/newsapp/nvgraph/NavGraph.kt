@@ -48,9 +48,11 @@ fun NavGraph(
             composable(
                 route = Route.NewsNavigatorScreen.route
             ){
+
                 val viewModel: HomeViewModel = hiltViewModel()
                 val articlesItem = viewModel.news.collectAsLazyPagingItems()
                 HomeScreen(articlesItem = articlesItem, navigate = {})
+                ArticleCardShimmerEffect()
             }
         }
     }
