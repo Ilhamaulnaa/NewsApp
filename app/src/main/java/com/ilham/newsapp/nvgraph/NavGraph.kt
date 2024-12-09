@@ -15,6 +15,8 @@ import com.ilham.newsapp.presentation.home.HomeScreen
 import com.ilham.newsapp.presentation.home.HomeViewModel
 import com.ilham.newsapp.presentation.onboarding.OnBoardingScreen
 import com.ilham.newsapp.presentation.onboarding.OnBoardingViewModel
+import com.ilham.newsapp.presentation.search.SearchScreen
+import com.ilham.newsapp.presentation.search.SearchViewModel
 import com.ilham.newsapp.ui.common.ArticleCardShimmerEffect
 
 @ExperimentalMaterial3Api
@@ -48,9 +50,8 @@ fun NavGraph(
             composable(
                 route = Route.NewsNavigatorScreen.route
             ){
-                val viewModel: HomeViewModel = hiltViewModel()
-                val articlesItem = viewModel.news.collectAsLazyPagingItems()
-                HomeScreen(articlesItem = articlesItem, navigate = {})
+                val viewModel: SearchViewModel = hiltViewModel()
+                SearchScreen(state = viewModel.state.value, event = viewModel::onEvent, navigate = {})
             }
         }
     }

@@ -11,6 +11,7 @@ import com.ilham.domain.usecase.app_entry.ReadAppEntry
 import com.ilham.domain.usecase.app_entry.SaveAppEntry
 import com.ilham.domain.usecase.news.GetNews
 import com.ilham.domain.usecase.news.NewsUseCases
+import com.ilham.domain.usecase.news.SearchNews
 import com.ilham.util.Constans.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -64,6 +65,9 @@ object AppModule {
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(
+                newsRepository = newsRepository,
+            ),
+            searchNews = SearchNews(
                 newsRepository = newsRepository
             )
         )
