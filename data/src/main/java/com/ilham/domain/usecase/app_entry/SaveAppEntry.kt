@@ -1,4 +1,4 @@
-package com.ilham.domain.usecase
+package com.ilham.domain.usecase.app_entry
 
 import com.ilham.domain.manger.LocalUserManger
 

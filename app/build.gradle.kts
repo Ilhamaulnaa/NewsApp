@@ -85,9 +85,9 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
 
-    //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+//    //Retrofit
+//    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+//    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
@@ -101,10 +101,10 @@ dependencies {
     //Accompanist
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta")
 
-    //Paging 3
-//    def paging_version = "3.1.1"
-    implementation("androidx.paging:paging-runtime:3.1.1")
-    implementation("androidx.paging:paging-compose:3.2.0-rc01")
+//    //Paging 3
+////    def paging_version = "3.1.1"
+//    implementation("androidx.paging:paging-runtime:3.1.1")
+//    implementation("androidx.paging:paging-compose:3.2.0-rc01")
 
     //Room
 //    def room_version = "2.5.2"
