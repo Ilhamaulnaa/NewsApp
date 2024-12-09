@@ -8,4 +8,6 @@ interface NewsRepository {
 
     fun getNews(sources: List<String>): Flow<PagingData<ArticlesItem>>
 
+    fun search(searchQuery: String, sources: List<String>): Flow<PagingData<ArticlesItem>>
+
 }
