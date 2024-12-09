@@ -1,6 +1,7 @@
 package com.ilham.newsapp.nvgraph
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -9,10 +10,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.ilham.newsapp.presentation.home.HomeScreen
+import com.ilham.newsapp.presentation.home.HomeViewModel
 import com.ilham.newsapp.presentation.onboarding.OnBoardingScreen
 import com.ilham.newsapp.presentation.onboarding.OnBoardingViewModel
 import com.ilham.newsapp.ui.common.ArticleCardShimmerEffect
 
+@ExperimentalMaterial3Api
 @ExperimentalFoundationApi
 @Composable
 fun NavGraph(
@@ -43,7 +48,9 @@ fun NavGraph(
             composable(
                 route = Route.NewsNavigatorScreen.route
             ){
-                ArticleCardShimmerEffect()
+                val viewModel: HomeViewModel = hiltViewModel()
+                val articlesItem = viewModel.news.collectAsLazyPagingItems()
+                HomeScreen(articlesItem = articlesItem, navigate = {})
             }
         }
     }

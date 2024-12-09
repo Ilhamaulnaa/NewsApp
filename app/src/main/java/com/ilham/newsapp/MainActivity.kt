@@ -5,8 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.SideEffect
@@ -19,6 +22,7 @@ import com.ilham.newsapp.nvgraph.NavGraph
 import com.ilham.newsapp.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalMaterial3Api
 @ExperimentalFoundationApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -64,8 +68,10 @@ class MainActivity : ComponentActivity() {
 //                        event = viewModel::onEvent
 //                    )
 
-                    val startDestination = viewModel.startDestination
-                    NavGraph(startDestination = startDestination)
+                    Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)){
+                        val startDestination = viewModel.startDestination
+                        NavGraph(startDestination = startDestination)
+                    }
 
                 }
             }

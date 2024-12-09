@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -31,6 +32,7 @@ import com.ilham.data.remote.dto.ArticlesItem
 import com.ilham.data.remote.dto.Source
 import com.ilham.newsapp.R
 import com.ilham.newsapp.presentation.Dimens.ArticleCardSize
+import com.ilham.newsapp.presentation.Dimens.ExtraSmallPadding
 import com.ilham.newsapp.presentation.Dimens.ExtraSmallPadding2
 import com.ilham.newsapp.presentation.Dimens.SmallIconSize
 import com.ilham.newsapp.ui.theme.BlueGray
@@ -55,11 +57,13 @@ fun ArticleCard(
                 .size(ArticleCardSize)
                 .clip(MaterialTheme.shapes.medium),
             model = ImageRequest.Builder(context).data(articlesItem.urlToImage).build(),
-            contentDescription = null
+            contentDescription = null,
+            contentScale = ContentScale.Crop
         )
-
         Column (
-            modifier = Modifier,
+            modifier = Modifier
+                .padding(horizontal = ExtraSmallPadding2)
+                .height(ArticleCardSize),
             verticalArrangement = Arrangement.SpaceAround
         ){
             Text(
