@@ -64,6 +64,11 @@ fun ArticleCard(
             modifier = Modifier
                 .padding(horizontal = ExtraSmallPadding2)
                 .height(ArticleCardSize),
+            contentDescription = null
+        )
+
+        Column (
+            modifier = Modifier,
             verticalArrangement = Arrangement.SpaceAround
         ){
             Text(
