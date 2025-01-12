@@ -1,6 +1,10 @@
 package com.ilham.di
 
 import android.app.Application
+import androidx.room.Room
+import com.ilham.data.local.NewsDao
+import com.ilham.data.local.NewsDatabase
+import com.ilham.data.local.NewsTypeConvertor
 import com.ilham.data.manger.LocalUserMangerImpl
 import com.ilham.data.remote.repository.NewsRepositoryImpl
 import com.ilham.data.remote.service.NewsApi
@@ -13,6 +17,7 @@ import com.ilham.domain.usecase.news.GetNews
 import com.ilham.domain.usecase.news.NewsUseCases
 import com.ilham.domain.usecase.news.SearchNews
 import com.ilham.util.Constans.BASE_URL
+import com.ilham.util.Constans.NEWS_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -72,5 +77,25 @@ object AppModule {
             )
         )
     }
+
+    @Provides
+    @Singleton
+    fun NewsDatabase(
+        application: Application
+    ): NewsDatabase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = NewsDatabase::class.java,
+            name = NEWS_DATABASE_NAME
+        ).addTypeConverter(NewsTypeConvertor())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ): NewsDao = newsDatabase.newsDao
 
 }

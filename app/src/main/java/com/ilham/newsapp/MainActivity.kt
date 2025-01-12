@@ -17,17 +17,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.ilham.data.local.NewsDao
+import com.ilham.data.remote.dto.ArticlesItem
+import com.ilham.data.remote.dto.Source
 import com.ilham.newsapp.nvgraph.NavGraph
 import com.ilham.newsapp.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @ExperimentalMaterial3Api
 @ExperimentalFoundationApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-//    @Inject
-//    lateinit var useCases: AppEntryUseCases
 
     val viewModel by viewModels<MainViewModel>()
 
@@ -40,11 +44,7 @@ class MainActivity : ComponentActivity() {
                 viewModel.splashCondition
             }
         }
-//        lifecycleScope.launch {
-//            useCases.readAppEntry().collect{
-//                Log.d("test", it.toString())
-//            }
-//        }
+
         setContent {
             NewsAppTheme {
 
