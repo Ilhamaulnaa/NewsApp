@@ -1,5 +1,7 @@
 package com.ilham.data.remote.dto
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class NewsResponse(
@@ -23,6 +25,7 @@ data class Source(
 	val id: String = ""
 )
 
+@Entity()
 data class ArticlesItem(
 
 	@field:SerializedName("publishedAt")
@@ -44,7 +47,7 @@ data class ArticlesItem(
 	val title: String = "",
 
 	@field:SerializedName("url")
-	val url: String = "",
+	@PrimaryKey val url: String = "",
 
 	@field:SerializedName("content")
 	val content: String = ""
