@@ -13,9 +13,12 @@ import com.ilham.domain.repository.NewsRepository
 import com.ilham.domain.usecase.app_entry.AppEntryUseCases
 import com.ilham.domain.usecase.app_entry.ReadAppEntry
 import com.ilham.domain.usecase.app_entry.SaveAppEntry
+import com.ilham.domain.usecase.news.DeleteArticle
 import com.ilham.domain.usecase.news.GetNews
 import com.ilham.domain.usecase.news.NewsUseCases
 import com.ilham.domain.usecase.news.SearchNews
+import com.ilham.domain.usecase.news.SelectArticle
+import com.ilham.domain.usecase.news.UpsertArticle
 import com.ilham.util.Constans.BASE_URL
 import com.ilham.util.Constans.NEWS_DATABASE_NAME
 import dagger.Module
@@ -66,7 +69,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository
+        newsRepository: NewsRepository,
+        newsDao: NewsDao
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(
@@ -74,6 +78,15 @@ object AppModule {
             ),
             searchNews = SearchNews(
                 newsRepository = newsRepository
+            ),
+            upsertArticle = UpsertArticle(
+                newsDao = newsDao
+            ),
+            deleteAtticle = DeleteArticle(
+                newsDao = newsDao
+            ),
+            selectArticle = SelectArticle(
+                newsDao = newsDao
             )
         )
     }
