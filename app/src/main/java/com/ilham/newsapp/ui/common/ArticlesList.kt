@@ -18,6 +18,24 @@ import com.ilham.newsapp.ui.animtation.LoadingAnimation
 @Composable
 fun ArticlesList(
     modifier: Modifier = Modifier,
+    articlesItem: List<ArticlesItem>,
+    onClick: (ArticlesItem) -> Unit
+) {
+
+    LazyColumn(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(Dimens.MediumPadding1),
+        contentPadding = PaddingValues(Dimens.ExtraSmallPadding2)
+    ){
+        items(count = articlesItem.size){
+            val article = articlesItem[it]
+            ArticleCard(articlesItem = article, onClick = { onClick(article) })
+        }
+    }
+}
+@Composable
+fun ArticlesList(
+    modifier: Modifier = Modifier,
     articlesItem: LazyPagingItems<ArticlesItem>,
     onClick: (ArticlesItem) -> Unit
 ) {
