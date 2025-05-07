@@ -9,6 +9,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.ilham.data.remote.dto.ArticlesItem
 import com.ilham.newsapp.nvgraph.Route
 import com.ilham.newsapp.presentation.Dimens.MediumPadding1
 import com.ilham.newsapp.ui.common.ArticlesList
@@ -19,7 +20,7 @@ import com.ilham.newsapp.ui.searchbar.SearchBar
 fun SearchScreen(
     state: SearchState,
     event: (SearchEvent) -> Unit,
-    navigate: (String) -> Unit
+    navigateToDetailsScreen: (ArticlesItem) -> Unit
 ) {
 
     Column(
@@ -42,7 +43,7 @@ fun SearchScreen(
             val articlesItem = it.collectAsLazyPagingItems()
             ArticlesList(
                 articlesItem = articlesItem,
-                onClick = { navigate(Route.DetailScreen.route) }
+                onClick = { navigateToDetailsScreen(it) }
             )
         }
     }

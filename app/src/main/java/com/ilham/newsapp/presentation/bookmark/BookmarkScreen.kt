@@ -21,7 +21,7 @@ import com.ilham.newsapp.ui.common.ArticlesList
 @Composable
 fun BookmarkScreen(
     state: BookmarkState,
-    navigate: (String) -> Unit
+    navigateToDetailsScreen: () -> Unit
 ) {
 
     Column(
@@ -39,7 +39,7 @@ fun BookmarkScreen(
         Spacer(modifier = Modifier.height(MediumPadding1))
         ArticlesList(
             articlesItem = state.articlesItem,
-            onClick = { navigate(Route.DetailScreen.route) }
+            onClick = { navigateToDetailsScreen() }
         )
 
     }

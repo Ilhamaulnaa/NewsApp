@@ -2,13 +2,11 @@ package com.ilham.newsapp.presentation.detail
 
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -27,7 +25,6 @@ import coil.request.ImageRequest
 import com.ilham.data.remote.dto.ArticlesItem
 import com.ilham.data.remote.dto.Source
 import com.ilham.newsapp.R
-import com.ilham.newsapp.presentation.Dimens
 import com.ilham.newsapp.presentation.Dimens.ArticleImageHeight
 import com.ilham.newsapp.presentation.Dimens.ExtraSmallPadding
 import com.ilham.newsapp.presentation.Dimens.ExtraSmallPadding2
@@ -50,7 +47,7 @@ fun DetailScreen(
             TopBarDetail(
                 onBackClick = navigateUp,
                 onBookmarkClick = {
-                  event(DetailEvent.SaveArticleItem)
+                  event(DetailEvent.UpsertDeleteArticleItem(articlesItem))
                 },
                 onShareClick = {
                     Intent(Intent.ACTION_SEND).also {

@@ -15,6 +15,7 @@ import com.ilham.newsapp.presentation.bookmark.BookmarkScreen
 import com.ilham.newsapp.presentation.bookmark.BookmarkViewModel
 import com.ilham.newsapp.presentation.home.HomeScreen
 import com.ilham.newsapp.presentation.home.HomeViewModel
+import com.ilham.newsapp.presentation.news_navigator.NewsNavigator
 import com.ilham.newsapp.presentation.onboarding.OnBoardingScreen
 import com.ilham.newsapp.presentation.onboarding.OnBoardingViewModel
 import com.ilham.newsapp.presentation.search.SearchScreen
@@ -49,11 +50,8 @@ fun NavGraph(
             route = Route.NewsNavigation.route,
             startDestination = Route.NewsNavigatorScreen.route
         ){
-            composable(
-                route = Route.NewsNavigatorScreen.route
-            ){
-                val viewModel: BookmarkViewModel = hiltViewModel()
-                BookmarkScreen(state = viewModel.state.value, navigate = {} )
+            composable(route = Route.NewsNavigatorScreen.route){
+                NewsNavigator()
             }
         }
     }

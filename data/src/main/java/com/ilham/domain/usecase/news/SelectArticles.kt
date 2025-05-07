@@ -4,12 +4,12 @@ import com.ilham.data.local.NewsDao
 import com.ilham.data.remote.dto.ArticlesItem
 import kotlinx.coroutines.flow.Flow
 
-class SelectArticle (
+class SelectArticles(
     private val newsDao: NewsDao
 ) {
 
-    suspend operator fun invoke(url: String): ArticlesItem? {
-        return newsDao.getArticleItem(url)
+    operator fun invoke(): Flow<List<ArticlesItem>>{
+        return newsDao.getArticlles()
     }
 
 }

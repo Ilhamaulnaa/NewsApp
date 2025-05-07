@@ -18,6 +18,7 @@ import com.ilham.domain.usecase.news.GetNews
 import com.ilham.domain.usecase.news.NewsUseCases
 import com.ilham.domain.usecase.news.SearchNews
 import com.ilham.domain.usecase.news.SelectArticle
+import com.ilham.domain.usecase.news.SelectArticles
 import com.ilham.domain.usecase.news.UpsertArticle
 import com.ilham.util.Constans.BASE_URL
 import com.ilham.util.Constans.NEWS_DATABASE_NAME
@@ -83,6 +84,9 @@ object AppModule {
                 newsDao = newsDao
             ),
             deleteAtticle = DeleteArticle(
+                newsDao = newsDao
+            ),
+            selectArticles = SelectArticles(
                 newsDao = newsDao
             ),
             selectArticle = SelectArticle(

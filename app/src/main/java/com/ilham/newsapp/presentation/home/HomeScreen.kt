@@ -40,7 +40,8 @@ import com.ilham.newsapp.ui.searchbar.SearchBar
 @Composable
 fun HomeScreen(
     articlesItem: LazyPagingItems<ArticlesItem>,
-    navigate: (String) -> Unit
+    navigateSearchScreen: () -> Unit,
+    navigateToDetailsScreen: (ArticlesItem) -> Unit
 ) {
 
     val titles by remember {
@@ -76,7 +77,7 @@ fun HomeScreen(
             onValueChange = {},
             readOnly = true,
             onClick = {
-                      navigate(Route.SearchScreen.route)
+                navigateSearchScreen()
             },
             onSearch = {}
         )
@@ -94,7 +95,7 @@ fun HomeScreen(
         ArticlesList(
             articlesItem = articlesItem,
             onClick = {
-                navigate(Route.DetailScreen.route)
+                navigateToDetailsScreen(it)
             }
         )
     }

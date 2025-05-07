@@ -10,4 +10,10 @@ interface NewsRepository {
 
     fun search(searchQuery: String, sources: List<String>): Flow<PagingData<ArticlesItem>>
 
+    suspend fun upsertArticle(article:ArticlesItem)
+
+    fun delete(article:ArticlesItem)
+
+    fun selectArticle():Flow<List<ArticlesItem>>
+
 }

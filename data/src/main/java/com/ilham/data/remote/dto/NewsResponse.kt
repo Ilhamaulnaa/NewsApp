@@ -2,6 +2,7 @@ package com.ilham.data.remote.dto
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.versionedparcelable.VersionedParcelize
 import com.google.gson.annotations.SerializedName
 
 data class NewsResponse(
@@ -25,7 +26,8 @@ data class Source(
 	val id: String = ""
 )
 
-@Entity()
+
+@Entity
 data class ArticlesItem(
 
 	@field:SerializedName("publishedAt")
